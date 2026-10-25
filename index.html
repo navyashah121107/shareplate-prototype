@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SharePlate – Food Waste Management &amp; Donation System</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@500;600;700&display=swap">
+<style>
+:root{--g:#26734D;--mint:#E3F2E7;--bg:#FFFDF7;--or:#F2B66D;--tx:#26352B;--card:#fff;--line:#d5e4d9;--mut:#5a6b5f;--warn:#b3402a;--hd:#1B5E3B;--ac:#B25E0E;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--hd:#8fe0b3;--ac:#F2B66D;--bg:#17211b;--card:#1f2c24;--mint:#243a2d;--tx:#eaf3ec;--line:#35493c;--mut:#a9bdb0;--g:#5cc08a;--warn:#ff9c85}}
+:root[data-theme="dark"]{--hd:#8fe0b3;--ac:#F2B66D;--bg:#17211b;--card:#1f2c24;--mint:#243a2d;--tx:#eaf3ec;--line:#35493c;--mut:#a9bdb0;--g:#5cc08a;--warn:#ff9c85}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.6 Inter,system-ui,sans-serif}
+h1,h2,h3{font-family:Poppins,Inter,sans-serif;line-height:1.2;margin:0 0 .5em;color:var(--hd)}.cta h2{color:#fff}.note b{color:var(--ac)}th{color:var(--ac)!important}
+h1{font-size:clamp(2rem,5vw,3.4rem)}h2{font-size:1.9rem}h3{font-size:1.15rem}
+a{color:var(--g)}.w{max-width:1120px;margin:0 auto;padding:0 20px}
+.demo{background:var(--or);color:#26352B;text-align:center;font-size:.85rem;padding:6px 12px}
+nav{background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+nav .w{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding-top:10px;padding-bottom:10px}
+.logo{font:700 1.25rem Poppins;color:var(--g);cursor:pointer;margin-right:auto;display:flex;gap:8px;align-items:center}
+nav a.l{padding:6px 12px;border-radius:99px;color:var(--tx);text-decoration:none;font-weight:500;font-size:.95rem}
+nav a.l:hover,nav a.l.on{background:var(--mint)}
+.btn{display:inline-block;border:2px solid var(--g);background:var(--g);color:#fff;padding:11px 24px;border-radius:99px;font:600 1rem Poppins,sans-serif;cursor:pointer;text-decoration:none;transition:.15s}
+:root:not([data-theme="light"]) .btn{color:#10261a}:root:not([data-theme="light"]) .btn.o{color:var(--g)}:root:not([data-theme="light"]) .cta .btn{color:var(--tx)}.btn.o:hover{background:var(--mint)}::selection{background:var(--or);color:#26352B}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 12px rgba(38,115,77,.3)}
+.btn.o{background:transparent;color:var(--g)}.btn.or{background:var(--or);border-color:var(--or);color:#26352B}
+.btn.s{padding:6px 16px;font-size:.85rem}
+:focus-visible{outline:3px solid var(--or);outline-offset:2px}
+.hero{background:var(--mint);padding:56px 0}.hero .w{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center}
+.hero p{font-size:1.1rem;max-width:34em}.row{display:flex;gap:12px;flex-wrap:wrap}
+.sec{padding:52px 0}.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px}
+.card.h{cursor:pointer;transition:.15s}.card.h:hover{border-color:var(--g);transform:translateY(-2px)}
+.ic{width:46px;height:46px;border-radius:14px;background:var(--mint);display:grid;place-items:center;margin-bottom:12px}
+.ic svg{width:24px;height:24px;stroke:var(--g);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.steps{counter-reset:s;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px}
+.step{counter-increment:s;padding-left:0}.step:before{content:counter(s);display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:var(--or);color:#26352B;font:600 1rem Poppins;margin-bottom:8px}
+.cta{background:var(--g);color:#fff;text-align:center;padding:52px 20px;border-radius:24px}
+:root:not([data-theme="light"]) .cta{background:#2b5a40;color:#fff}
+.cta .btn{background:var(--bg);border-color:var(--bg);color:#26352B}
+label{display:block;font-weight:500;margin:14px 0 4px;font-size:.92rem;color:var(--hd)}
+input,select,textarea{width:100%;padding:11px 14px;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);color:var(--tx);font:inherit}
+input:focus,select:focus,textarea:focus{outline:none;border-color:var(--g)}
+.err input,.err select,.err textarea{border-color:var(--warn)}.msg{color:var(--warn);font-size:.82rem;display:none;margin-top:3px}.err .msg{display:block}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+.tabs{display:flex;background:var(--mint);border-radius:99px;padding:4px;margin-bottom:8px}
+.tabs button{flex:1;border:0;background:none;padding:9px;border-radius:99px;font:600 .95rem Poppins;color:var(--tx);cursor:pointer}
+.tabs button.on{background:var(--g);color:#fff}
+.box{max-width:520px;margin:40px auto}
+.note{background:var(--mint);border-left:5px solid var(--or);border-radius:12px;padding:12px 16px;font-size:.92rem;margin:14px 0}
+.badge{display:inline-block;padding:2px 12px;border-radius:99px;font-size:.8rem;font-weight:600;background:var(--mint);color:var(--g)}
+.b-Pending{background:#fde9c9;color:#7a4a05}.b-Accepted{background:#d6e8fb;color:#1d4a7a}.b-Picked{background:#e8dcf7;color:#4f2a82}.b-Delivered{background:#d3efdc;color:#16603a}
+.tw{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:620px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid var(--line)}th{font-size:.85rem;color:var(--mut)}
+.stat{font:700 2rem Poppins;color:var(--ac)}
+.pick{display:flex;gap:12px}.pick label{flex:1;margin:0;border:2px solid var(--line);border-radius:14px;padding:12px;cursor:pointer;text-align:center}
+.pick input{display:none}.pick input:checked+span{color:var(--g);font-weight:700}.pick label:has(input:checked){border-color:var(--g);background:var(--mint)}
+.fl{display:grid;grid-template-columns:2fr 1fr 1fr;gap:12px;margin-bottom:20px}
+.tl{position:relative;margin:24px 0}.tl .st{display:flex;gap:16px;padding-bottom:26px;position:relative}
+.tl .st:not(:last-child):before{content:"";position:absolute;left:15px;top:32px;bottom:0;width:3px;background:var(--line)}
+.tl .st.done:not(:last-child):before{background:var(--g)}
+.dot{flex:none;width:32px;height:32px;border-radius:50%;border:3px solid var(--line);background:var(--card);display:grid;place-items:center;font-size:.8rem;font-weight:700}
+.done .dot{background:var(--g);border-color:var(--g);color:#fff}.cur .dot{border-color:var(--or);background:var(--or);color:#26352B}
+.flow{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:center}.flow .card{padding:14px 18px;font-weight:600}
+details{border-bottom:1px solid var(--line);padding:12px 0}summary{cursor:pointer;font-weight:600}
+footer{background:var(--mint);margin-top:40px;padding:28px 0;font-size:.9rem;color:var(--mut)}
+.chk{display:flex;gap:10px;align-items:flex-start;margin-top:14px}.chk input{width:20px;margin-top:4px}
+@media(max-width:760px){.hero .w,.two,.fl{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<div class="demo">Prototype for demonstration only. All data is fictional; there is no login, database or live tracking.</div>
+<nav><div class="w"><div class="logo" onclick="go('home')"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10z"/><path d="M2 21c0-3 1.9-5.4 5.1-6.5C9 13.8 11 13 13 11"/></svg>SharePlate</div>
+<a class="l" href="#home">Home</a><a class="l" href="#about">About</a><a class="l" href="#about" onclick="setTimeout(()=>document.getElementById('how')?.scrollIntoView(),30)">How It Works</a><a class="l" href="#donate">Donate Food</a><a class="l" href="#find">Find Food</a><a class="l" href="#contact">Help</a><a class="btn s" href="#auth">Login / Register</a></div></nav>
+<main id="app"></main>
+<footer><div class="w"><b style="font-family:Poppins">SharePlate</b> · Don’t waste food. Share it with care.<br>A Design Thinking college project prototype. No real partnerships, statistics or contact services are implied.</div></footer>
+<script>
+const $=s=>document.querySelector(s);
+const ic=p=>`<div class="ic"><svg viewBox="0 0 24 24">${p}</svg></div>`;
+const bd=s=>`<span class="badge b-${s.split(' ')[0]}">${s}</span>`;
+const DON=[["SP-1042","Vegetable biryani","20 plates","12 Oct 2026","Delivered"],["SP-1051","Packed bread loaves","30 packs","18 Oct 2026","Picked Up"],["SP-1058","Seasonal fruit crates","3 crates","22 Oct 2026","Accepted"],["SP-1063","Dal and rice","15 plates","24 Oct 2026","Pending"]];
+const LST=[{id:1,n:"Veg pulao and raita",c:"Cooked Food",q:"25 plates",p:"Today, 1:30 pm",a:"Navrangpura",d:"Today, 6:00 pm",s:"Stored covered; consume within 4 hours of preparation.",v:"Available"},
+{id:2,n:"Packed biscuits",c:"Packaged Food",q:"40 packets",p:"Yesterday",a:"Maninagar",d:"Tomorrow, 5:00 pm",s:"Sealed, labelled, expiry 3 months away.",v:"Available"},
+{id:3,n:"Bananas and apples",c:"Fruits and Vegetables",q:"6 kg",p:"Today, 9:00 am",a:"Satellite",d:"Today, 8:00 pm",s:"Fresh, kept in a cool, dry place.",v:"Available"},
+{id:4,n:"Khichdi",c:"Cooked Food",q:"18 plates",p:"Today, 12:00 pm",a:"Maninagar",d:"Today, 5:00 pm",s:"Stored hot in insulated containers.",v:"Reserved"}];
+let td=DON[1],role="donor",mode="login",cur=LST[0],last={n:"Dal and rice",q:"15 plates",a:"Navrangpura, Ahmedabad"};
+const nav=(t,id)=>`<button class="btn ${t||''}" onclick="go('${id}')">`;
+function hdr(t,sub){return `<div class="w sec" style="padding-bottom:0"><h2>${t}</h2>${sub?`<p>${sub}</p>`:''}</div>`}
+const V={
+home:()=>`<section class="hero"><div class="w"><div><h1>Share Extra Food. Share Hope.</h1><p>Turn surplus food into an opportunity to help. Connect with trusted food donation partners and help reduce food waste in your community.</p><div class="row">${nav('','donate')}Donate Food</button>${nav('o','find')}Find Food</button></div></div>
+<svg viewBox="0 0 400 300" role="img" aria-label="Illustration of a shared plate of food" style="width:100%"><circle cx="200" cy="150" r="130" fill="#FFFDF7"/><circle cx="200" cy="150" r="96" fill="#F2B66D" opacity=".35"/><circle cx="200" cy="150" r="84" fill="none" stroke="#26734D" stroke-width="6"/><path d="M170 175c-10-40 20-70 60-62 8 38-18 66-60 62z" fill="#26734D"/><path d="M172 172c20-24 34-36 52-50" stroke="#E3F2E7" stroke-width="4" fill="none" stroke-linecap="round"/><circle cx="95" cy="70" r="14" fill="#F2B66D"/><circle cx="318" cy="228" r="18" fill="#26734D" opacity=".25"/><path d="M290 80q10-24 30 0q-14 18-30 0z" fill="#F2B66D"/></svg></div></section>
+<div class="w sec"><div class="grid3">
+<div class="card">${ic('<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M9 12l2 2 4-4"/>')}<h3>Safe Food Donation</h3><p>Encourage appropriate food handling and safety checks.</p></div>
+<div class="card">${ic('<circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-4 3-6 6-6s6 2 6 6M15 15c3 0 6 1 6 5"/>')}<h3>Trusted Partners</h3><p>Connect with verified NGOs and collectors.</p></div>
+<div class="card">${ic('<rect x="2" y="7" width="12" height="9" rx="1"/><path d="M14 10h4l3 3v3h-7"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/>')}<h3>Convenient Collection</h3><p>Help coordinate food pickup and delivery.</p></div></div></div>
+<div class="w sec" style="padding-top:0"><h2>How It Works</h2><div class="steps"><div class="step"><h3>List surplus food</h3></div><div class="step"><h3>Connect with a donation partner</h3></div><div class="step"><h3>Arrange collection</h3></div><div class="step"><h3>Track donation status</h3></div></div></div>
+<div class="w"><div class="cta"><h2>Every Meal Shared Makes a Difference.</h2><p>Start with a single donation listing.</p>${nav('','auth')}Login / Register</button></div></div>`,
+about:()=>`${hdr('About SharePlate')}<div class="w sec" style="padding-top:16px"><div class="grid3"><div class="card"><h3>The problem</h3><p>Edible food is often wasted at homes, restaurants, college canteens, and events, while people in need may lack access to food. Donors may not know whom to contact and may worry about safe handling and reliable collection.</p></div><div class="card"><h3>Our solution</h3><p>SharePlate aims to provide a convenient way to list surplus food, connect donors with verified donation partners, coordinate collection, and view donation progress.</p></div></div>
+<h2 id="how" style="margin-top:44px">How It Works</h2><div class="flow"><div class="card">Food Donor</div>→<div class="card" style="background:var(--g);color:#fff">SharePlate</div>→<div class="card">Verified NGO / Collector</div>→<div class="card">People in Need</div></div>
+<div class="note">Partner verification and food-safety procedures would need to be implemented and validated in the real system. This prototype does not perform either.</div></div>`,
+auth:()=>`<div class="box card"><div class="tabs"><button class="${mode=='login'?'on':''}" onclick="mode='login';go('auth')">Login</button><button class="${mode=='reg'?'on':''}" onclick="mode='reg';go('auth')">Register</button></div>
+<div class="pick" style="margin-top:12px"><label><input type="radio" name="role" value="donor" ${role=='donor'?'checked':''} onchange="role='donor'"><span>Food Donor</span></label><label><input type="radio" name="role" value="ngo" ${role=='ngo'?'checked':''} onchange="role='ngo'"><span>NGO / Food Collector</span></label></div>
+<form id="af" novalidate onsubmit="return auth(event)">${mode=='reg'?`<div class="f"><label for="nm">Full name / Organization name</label><input id="nm" required><div class="msg">Enter your name.</div></div>`:''}
+<div class="f"><label for="em">Email address</label><input id="em" type="email" required><div class="msg">Enter a valid email address.</div></div>
+${mode=='reg'?`<div class="f"><label for="ph">Phone number</label><input id="ph" inputmode="tel" required><div class="msg">Enter a phone number.</div></div>`:''}
+<div class="f"><label for="pw">Password</label><input id="pw" type="password" required minlength="6"><div class="msg">Use at least 6 characters.</div></div>
+${mode=='reg'?`<div class="f"><label for="pc">Confirm password</label><input id="pc" type="password" required><div class="msg">Passwords do not match.</div></div>`:''}
+<div class="note">Demo only: any input that passes validation signs you in. No real authentication exists.</div>
+<div class="row"><button class="btn">${mode=='login'?'Login':'Create Account'}</button><button type="button" class="btn o" onclick="go('home')">Back to Home</button></div></form></div>`,
+dash:()=>`<div class="w sec"><h1 style="font-size:2.2rem">Welcome to Your Dashboard</h1><p>Sample data for demonstration.</p><div class="grid3">${[["Total Donations",DON.length],["Pending Donations",DON.filter(d=>d[4]=='Pending').length],["Accepted Donations",DON.filter(d=>d[4]=='Accepted').length],["Completed Donations",DON.filter(d=>d[4]=='Delivered').length]].map(x=>`<div class="card"><div class="stat">${x[1]}</div>${x[0]}</div>`).join('')}</div>
+<div class="row" style="margin:24px 0">${nav('','donate')}Donate Surplus Food</button><button class="btn o" onclick="document.getElementById('hist').scrollIntoView()">View My Donations</button>${nav('o','track')}Track Donations</button></div>
+<div class="card tw" id="hist"><h3>Donation history</h3><table><tr><th>Donation ID</th><th>Food Item</th><th>Quantity</th><th>Date</th><th>Status</th><th></th></tr>${DON.map((d,i)=>`<tr><td>${d[0]}</td><td>${d[1]}</td><td>${d[2]}</td><td>${d[3]}</td><td>${bd(d[4])}</td><td><button class="btn s o" onclick="td=DON[${i}];go('track')">View Details</button></td></tr>`).join('')}</table></div></div>`,
+donate:()=>`<div class="w sec"><h1 style="font-size:2.2rem">Donate Food</h1><div class="note"><b>Safety reminder:</b> Only offer food that is suitable for safe donation. Do not donate spoiled, contaminated, or expired food.</div>
+<form id="df" class="card" novalidate onsubmit="return sub(event)"><div class="two">
+<div class="f"><label for="fn">Food Name *</label><input id="fn" required><div class="msg">Enter the food name.</div></div>
+<div class="f"><label for="fc">Food Category *</label><select id="fc" required><option value="">Select…</option><option>Cooked Food</option><option>Packaged Food</option><option>Fruits and Vegetables</option></select><div class="msg">Choose a category.</div></div>
+<div class="f"><label for="fq">Quantity *</label><input id="fq" type="number" min="1" required><div class="msg">Enter a quantity.</div></div>
+<div class="f"><label for="fu">Unit</label><select id="fu"><option>plates</option><option>packets</option><option>kg</option></select></div>
+<div class="f"><label for="pd">Preparation Date and Time *</label><input id="pd" type="datetime-local" required><div class="msg">Add when it was prepared.</div></div>
+<div class="f"><label for="si">Storage Information *</label><input id="si" required placeholder="e.g. covered, refrigerated"><div class="msg">Describe how it is stored.</div></div>
+<div class="f"><label for="pa">Pickup Address *</label><input id="pa" required><div class="msg">Enter the pickup address.</div></div>
+<div class="f"><label for="ac">Area and City *</label><input id="ac" required><div class="msg">Enter area and city.</div></div>
+<div class="f"><label for="pp">Preferred Pickup Date and Time *</label><input id="pp" type="datetime-local" required><div class="msg">Choose a pickup time.</div></div>
+<div class="f"><label for="cn">Contact Number *</label><input id="cn" inputmode="tel" required><div class="msg">Enter a contact number.</div></div></div>
+<label for="an">Additional Notes</label><textarea id="an" rows="3"></textarea>
+<div class="f"><div class="chk"><input type="checkbox" id="ck" required><label for="ck" style="margin:0">I confirm that the food details are accurate and the food has been handled and stored appropriately.</label></div><div class="msg">Please confirm before submitting.</div></div>
+<div class="row" style="margin-top:20px"><button class="btn">Submit Donation</button><button type="button" class="btn o" onclick="go('dash')">Cancel</button><button type="button" class="btn o" onclick="go('dash')">Back to Dashboard</button></div></form></div>`,
+confirm:()=>`<div class="box card" style="max-width:620px;text-align:center"><div class="ic" style="margin:0 auto 12px;width:64px;height:64px"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div><h2>Your Donation Has Been Submitted!</h2><p>Thank you for taking a step toward reducing food waste. Your donation request is ready for review.</p>
+<div class="card" style="text-align:left;background:var(--mint)"><b>Donation ID:</b> ${td[0]} (sample)<br><b>Food item:</b> ${last.n}<br><b>Quantity:</b> ${last.q}<br><b>Pickup location:</b> ${last.a}<br><b>Status:</b> ${bd('Pending')}</div>
+<div class="note">Simulated submission: nothing was saved or sent.</div><div class="row" style="justify-content:center">${nav('','track')}View Donation Status</button>${nav('o','dash')}Back to Dashboard</button>${nav('o','donate')}Donate More Food</button></div></div>`,
+ngo:()=>`<div class="w sec"><h1 style="font-size:2.2rem">Welcome, Collection Partner</h1><p>Sample data for demonstration.</p><div class="grid3">${[["Available Listings",3],["Requests Sent",1],["Collections Completed",0]].map(x=>`<div class="card"><div class="stat">${x[1]}</div>${x[0]}</div>`).join('')}</div><div class="row" style="margin:24px 0">${nav('','find')}Find Available Food</button>${nav('o','home')}Back to Home</button></div><div class="card"><h3>Recent requests</h3><p>You requested <b>Veg pulao and raita</b> (25 plates, Navrangpura). Status: ${bd('Pending')}</p></div></div>`,
+find:()=>`<div class="w sec"><h1 style="font-size:2.2rem">Find Available Food</h1><div class="note">NGO / Collector view. Listings below are fictional demonstration data; no real food is available.</div>
+<div class="fl"><input id="q" placeholder="Search food or area" aria-label="Search" oninput="flt()"><select id="fcat" aria-label="Category" onchange="flt()"><option value="">All categories</option><option>Cooked Food</option><option>Packaged Food</option><option>Fruits and Vegetables</option></select><select id="far" aria-label="Area" onchange="flt()"><option value="">All areas</option><option>Navrangpura</option><option>Maninagar</option><option>Satellite</option></select></div><div class="grid3" id="ls"></div></div>`,
+detail:()=>`<div class="w sec"><button class="btn s o" onclick="go('find')">Back to listings</button><div class="card" style="margin-top:16px;max-width:720px"><span class="badge">Demonstration data</span><h1 style="font-size:2rem;margin-top:10px">${cur.n}</h1><p><b>${cur.c}</b> · ${cur.q} · ${cur.v}</p><p><b>Prepared:</b> ${cur.p}<br><b>Pickup area:</b> ${cur.a}<br><b>Pickup deadline:</b> ${cur.d}</p><div class="note"><b>Safety information:</b> ${cur.s}</div>${cur.v=='Available'?`<button class="btn" onclick="go('req')">Request Collection</button>`:`<span class="badge b-Pending">Reserved</span>`}</div></div>`,
+req:()=>`<div class="box card" style="text-align:center"><div class="ic" style="margin:0 auto 12px;width:64px;height:64px"><svg viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg></div><h2>Collection Request Sent</h2><p>Your request for <b>${cur.n}</b> (${cur.q}) in ${cur.a} is recorded for this demo. The donor would be notified in a real system.</p><div class="note">Simulated: no notification was sent.</div><div class="row" style="justify-content:center">${nav('','find')}Find More Food</button>${nav('o','home')}Back to Home</button></div></div>`,
+track:()=>{const S=[["Pending","Submitted by donor"],["Accepted","Partner accepted request"],["Picked Up","Collector picked up food"],["Delivered","Delivered to people in need"]];const k=S.findIndex(s=>s[0]==td[4]);return `<div class="w sec"><h1 style="font-size:2.2rem">Track Donation</h1><div class="note">Sample statuses only. Real-time tracking is not implemented.</div><div class="grid3"><div class="card"><h3>Donation ${td[0]}</h3><p><b>Food item:</b> ${td[1]}<br><b>Quantity:</b> ${td[2]}<br><b>Pickup address:</b> ${td[5]||'12 Sample Street, Navrangpura, Ahmedabad'}<br><b>Assigned collector:</b> ${k>0?'Sample Collector (fictional)':'Not assigned yet'}<br><b>Current status:</b> ${bd(td[4])}</p></div>
+<div class="card"><h3>Status timeline</h3><div class="tl">${S.map((s,i)=>`<div class="st ${i<k||k==3?'done':i==k?'cur':''}"><div class="dot">${i<k||k==3?'✓':i+1}</div><div><b>${s[0]}</b><br><span style="color:var(--mut);font-size:.9rem">${s[1]} · ${i<=k?'DD Mon, HH:MM (placeholder)':'Not reached yet'}</span></div></div>`).join('')}</div></div></div><br>${nav('','dash')}Back to Dashboard</button></div>`},
+contact:()=>`<div class="w sec"><h1 style="font-size:2.2rem">Contact and Help</h1><div class="grid3" style="grid-template-columns:repeat(auto-fit,minmax(300px,1fr))"><form class="card" novalidate onsubmit="return msg(event)"><h3>Send a message</h3><div class="f"><label for="cn1">Name</label><input id="cn1" required><div class="msg">Enter your name.</div></div><div class="f"><label for="ce">Email</label><input id="ce" type="email" required><div class="msg">Enter a valid email.</div></div><div class="f"><label for="cs">Subject</label><input id="cs" required><div class="msg">Add a subject.</div></div><div class="f"><label for="cm">Message</label><textarea id="cm" rows="4" required></textarea><div class="msg">Write a message.</div></div><p id="sent" class="badge" style="display:none">Demo: message not sent.</p><br><button class="btn">Send Message</button></form>
+<div class="card"><h3>Frequently asked questions</h3><details><summary>What food can be donated?</summary><p>Food that is fresh, safely stored and within its use-by period, such as cooked meals, sealed packaged items, and fruits and vegetables.</p></details><details><summary>How does collection work?</summary><p>A donor lists food and a pickup window. A partner can request collection and arrange pickup. In this prototype the steps are simulated.</p></details><details><summary>How are NGO partners verified?</summary><p>A real system would need a verification process. This prototype does not perform verification.</p></details><details><summary>How can I track my donation?</summary><p>Open the Track Donations page from your dashboard to see a sample status timeline.</p></details><details><summary>What should I do if food is unsafe to donate?</summary><p>Do not donate it. Dispose of spoiled, contaminated or expired food safely.</p></details></div></div></div>`
+};
+const AUTH=["auth"];
+function go(p){location.hash=p;if(location.hash.slice(1)==p)render()}
+function render(){let p=location.hash.slice(1)||'home';if(!V[p])p='home';$('#app').innerHTML=V[p]();if(p=='find')flt();scrollTo(0,0);
+document.querySelectorAll('nav a.l').forEach(a=>a.classList.toggle('on',a.getAttribute('href')=='#'+p))}
+addEventListener('hashchange',render);
+function chk(f){let ok=true;f.querySelectorAll('.f').forEach(d=>{const i=d.querySelector('input,select,textarea');if(!i)return;let bad=i.type=='checkbox'?!i.checked:!i.value.trim()||(i.type=='email'&&!/^\S+@\S+\.\S+$/.test(i.value))||(i.id=='pw'&&i.value.length<6)||(i.id=='pc'&&i.value!=$('#pw').value);d.classList.toggle('err',bad);if(bad)ok=false});return ok}
+function auth(e){e.preventDefault();if(chk(e.target))go(role=='donor'?'dash':'ngo');return false}
+function sub(e){e.preventDefault();if(chk(e.target)){last={n:$('#fn').value,q:$('#fq').value+' '+$('#fu').value,a:$('#pa').value+', '+$('#ac').value};td=['SP-'+(1064+DON.length-4),last.n,last.q,'Today','Pending',last.a];DON.unshift(td);go('confirm')}return false}
+function msg(e){e.preventDefault();if(chk(e.target))$('#sent').style.display='inline-block';return false}
+function flt(){const q=($('#q').value||'').toLowerCase(),c=$('#fcat').value,a=$('#far').value;const r=LST.filter(l=>(!c||l.c==c)&&(!a||l.a==a)&&(l.n+l.a).toLowerCase().includes(q));
+$('#ls').innerHTML=r.length?r.map(l=>`<div class="card h"><span class="badge">Demo listing</span> <span class="badge b-${l.v=='Available'?'Delivered':'Pending'}">${l.v}</span><h3 style="margin-top:8px">${l.n}</h3><p style="margin:0 0 8px"><b>${l.c}</b> · ${l.q}<br>Prepared: ${l.p}<br>Area: ${l.a}<br>Pickup by: ${l.d}<br><span style="color:var(--mut);font-size:.9rem">${l.s}</span></p><div class="row"><button class="btn s o" onclick="cur=LST[${l.id-1}];go('detail')">View Details</button>${l.v=='Available'?`<button class="btn s" onclick="cur=LST[${l.id-1}];go('req')">Request Collection</button>`:''}</div></div>`).join(''):'<p>No listings match. Clear a filter to see more.</p>'}
+render();
+</script></body></html>
